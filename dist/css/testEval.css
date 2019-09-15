@@ -1,0 +1,34 @@
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 999;
+}
+.container .eval {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 800px;
+  background-color: #ffffff;
+}
+.container .eval header {
+  height: 110px;
+  border-bottom: 1px solid #ececec;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .eval header h1 {
+  font-size: 30px;
+  font-weight: bold;
+}
+.container .eval header img {
+  width: 50px;
+}
+.container .eval header .right {
+  font-size: 24px;
+}
