@@ -13,8 +13,8 @@
     // position: absolute;
     // bottom: 0;
     // left: 0;
-    width: 100%;
-    height: 800px;
+    // width: 100%;
+    // height: 800px;
     background-color: #ffffff;
     header{
       height: 110px;
@@ -22,23 +22,114 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding: 0 30px;
       h1{
         font-size: 30px;
         font-weight: bold;
+        color: #333333;
       }
-      img{
-        width: 50px;
+      .close{
+        width: 30px;
       }
       .right{
         font-size: 24px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        color: #999999;
         .bord{
-          display: inline-block;
-          width: 20px;
-          height: 20px;
-          border: 1px solid #ececec;
-          border-radius: 50%;
+          width: 36px;
+          height: 36px;
+
+          margin-right: 20px;
         }
       }
     }
+  }
+  .starEval{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 37px;
+    img{
+      width: 58px;
+      height: 58px;
+      margin-right: 30px;
+    }
+    img:last-child{
+      margin-right: 0px;
+    }
+  }
+  .textEval{
+    text-align: center;
+    font-size: 28px;
+    color: #999999;
+    margin: 40px 0;
+    &.startChecked{
+      color: #FFA32C;
+    }
+  }
+  .evalDescribe{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    span{
+      box-sizing: border-box;
+      font-size: 28px;
+      color: #333333;
+      width: 260px;
+      height: 64px;
+      background-color: #F6F6F6;
+      margin-right: 30px;
+      margin-bottom: 30px;
+      text-align: center;
+      line-height: 64px;
+      border-radius: 4px;
+      &.checked{
+        color: #317DFF;
+        border: 1px solid #317DFF;
+        background-color: rgba(49,125,255,0.05)
+      }
+    }
+    span:nth-child(2n){
+      margin-right: 0;
+    }
+  }
+  .textarea{
+    width: 688px;
+    height: 259px;
+    margin: 12px auto 0;
+    position: relative;
+    textarea{
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+      font-size: 32px;
+      color: #333333;
+      padding: 26px 24px;
+      outline: none;
+      &::-webkit-input-placeholder{
+        color: #999999;
+      }
+    }
+    span{
+      position: absolute;
+      right: 24px;
+      bottom: 16px;
+      font-size: 28px;
+      color: #999999;
+    }
+  }
+  button{
+    display: block;
+    width: 690px;
+    height: 98px;
+    background-color: #317DFF;
+    border: none;
+    outline: none;
+    margin: 81px auto 0;
+    font-size: 32px;
+    color: #FFFFFF;
   }
 }

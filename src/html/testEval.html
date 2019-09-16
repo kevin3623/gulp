@@ -11,27 +11,50 @@
     <title>测试评价功能</title>
     <link rel="stylesheet" href="./css/reset.css">
     <link rel="stylesheet" href="./css/testEval.css">
+    <link rel="stylesheet" href="css/public_alert.css"/>
     <script src="./js/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="js/public_alert.js"></script>
     <script src="./js/flexible.js"></script>
+    <script src="./js/testEval.js"></script>
     <!-- <script src="./js/option.js"></script> -->
     <!-- <script type="text/javascript" src="js/hzeg.js"></script> -->
     <!-- <script src="./js/common.js"></script> -->
     <!-- <script src="https://test.iconntech.com/js/JSSdk-1.0.7.js"></script> -->
-    <script type="text/javascript" src="js/vconsole.min.js"></script>
+    <!-- <script type="text/javascript" src="js/vconsole.min.js"></script> -->
 </head>
 
 <body>
 <div class="container">
     <div class="eval">
         <header>
-            <img src="./images/delet.png" alt="关闭">
+            <img class="close" src="./images/delet.png" alt="关闭">
             <h1>评价</h1>
-            <div class="right">
-                <span class="bord"></span>
+            <div class="right" data-checked="1">
+                <img class="bord" src="./images/circle_noCheck.png" alt="">
                 <span>匿名</span>
             </div>
         </header>
     </div>
+    <div class="starEval" data-star="">
+        <img src="./images/star_noChecked.png" data-num="0" alt="">
+        <img src="./images/star_noChecked.png" data-num="1" alt="">
+        <img src="./images/star_noChecked.png" data-num="2" alt="">
+        <img src="./images/star_noChecked.png" data-num="3" alt="">
+        <img src="./images/star_noChecked.png" data-num="4" alt="">
+    </div>
+    <p class="textEval">您的评价可以让我们做得更好</p>
+    <!-- <div class="evalDescribe" data-tag=""> -->
+    <div class="evalDescribe">
+        <span>信息不准确</span>
+        <span>页面打开慢</span>
+        <span>办理效率低</span>
+        <span>流程较复杂</span>
+    </div>
+    <div class="textarea">
+        <textarea id="textarea" placeholder="请输入您的意见或建议（必填）"></textarea>
+        <span>至少30个字</span>
+    </div>
+    <button id="submit">提交</button>
 </div>
 
 <script>
