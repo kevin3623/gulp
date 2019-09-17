@@ -80,7 +80,7 @@ function submit(){
     evalDescribe.push($($('.evalDescribe .checked')[i]).text())
   }
   // $.myToast(textareaVal);
-  var url = '/api/h5gateway/evaluate/addEvaluate'
+  var url = '/h5gateway/evaluate/addEvaluate'
   var params = {
     "caseId": getQueryVariable('caseId'),
     "content": textareaVal,
