@@ -44,6 +44,7 @@ function evalStar(){
       editableTag.dissatisfaction.forEach(function(item,index){
         $($('.evalDescribe span')[index]).text(item)
       })
+      $('#textarea').attr('placeholder', '请输入您的意见或建议（必填）')
     }else if(imgNum === 2){
       // $('.evalDescribe span')
       editableTag.satisfaction.forEach(function(item,index){
@@ -101,7 +102,7 @@ function submit(){
       $.myToast(res.value);
     },
     error: function(e){
-      $.myToast("出错了");
+      $.myToast("服务器异常，请稍等");
     }
   })
 }

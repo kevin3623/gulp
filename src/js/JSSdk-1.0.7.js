@@ -391,7 +391,19 @@ function() {
                 console.warn("需要传入回调");
                 t.reFun = n
             }
-            if (e === "getAuthcode") { // 针对容器的getAuthcode方法，进行改造
+            if(e === "evaluate"){
+                if (window.yluareplace && window.yluareplace.appVersion) { // 在杭州办事app中
+                    if (window.jsbridge)
+                        window.jsbridge.add(t);
+                    else {
+                        var r = "ListItem" + (new Date()).getTime();
+                        this.readyList[r] = t
+                    }
+                } else {
+                    console.log(e,a,n);
+                    location.href = 'https://test.iconntech.com/united_h5/testEval.html?caseId=' + a.evaluateRequest.caseId
+                }
+            } else if (e === "getAuthcode") { // 针对容器的getAuthcode方法，进行改造
                 var reg = /auth[cC]ode=/i;
                 var url = location.href;
                 if(window.sessionStorage.getItem("sdk_token") || reg.test(url)) {

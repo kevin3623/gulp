@@ -17,9 +17,9 @@ var less = require('gulp-less')
 // });
 
 /* 压缩js文件 */
-gulp.task('default', function () {
+gulp.task('pressJs', function () {
   console.log('开始js文件压缩');
-  gulp.src('srec/js/*.js')
+  gulp.src('src/js/*.js')
   .pipe(uglify())
   .pipe(gulp.dest('dist/js'))
 });
