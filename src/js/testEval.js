@@ -6,7 +6,20 @@ $(function(){
   $('#submit').on('click',submit)
 })
 function closeEval(){
-  history.go(-1)
+  var params = { // 关闭评价，默认提交5星好评
+    "caseId": getQueryVariable('caseId'),
+    "content": "",
+    "starLevel": "5",
+    "editableTag": "",
+    "anonymous": ""
+  }
+  addEvaluate(params, function(res){
+    if(res.errorCode === '0'){
+    } else{
+      // $.myToast(res.value);
+    }
+    history.go(-1)
+  },function(){return false})
 }
 function toggleName(){
   var anonymityImge = ['./images/circle_noCheck.png', './images/cirlce_check.png']
@@ -45,17 +58,20 @@ function evalStar(){
         $($('.evalDescribe span')[index]).text(item)
       })
       $('#textarea').attr('placeholder', '请输入您的意见或建议（必填）')
+      $('#evalText').text('至少30个字')
     }else if(imgNum === 2){
       // $('.evalDescribe span')
       editableTag.satisfaction.forEach(function(item,index){
         $($('.evalDescribe span')[index]).text(item)
       })
       $('#textarea').attr('placeholder', '请输入您的意见或建议')
+      $('#evalText').text('')
     }else{
       editableTag.quiteSatisfied.forEach(function(item,index){
         $($('.evalDescribe span')[index]).text(item)
       })
       $('#textarea').attr('placeholder', '请输入您的意见或建议')
+      $('#evalText').text('')
     }
   })
 }
@@ -71,6 +87,9 @@ function evalDescribe(){
   }
 }
 function submit(){
+  if(!checkedEvalText()){ // 校验 输入框的文字
+    return false
+  }
   var anonymity = $('.right').attr('data-checked') // 是否匿名
   var star = $('.starEval').attr('data-star') // 星级
   // var evalDescribe =  $('.evalDescribe').attr('data-tag') // 评价标签
@@ -81,7 +100,6 @@ function submit(){
     evalDescribe.push($($('.evalDescribe .checked')[i]).text())
   }
   // $.myToast(textareaVal);
-  var url = '/h5gateway/evaluate/addEvaluate'
   var params = {
     "caseId": getQueryVariable('caseId'),
     "content": textareaVal,
@@ -89,21 +107,14 @@ function submit(){
     "editableTag": JSON.stringify(evalDescribe),
     "anonymous": anonymity
   }
-  $.ajax({
-    type: 'POST',
-    url: url,
-    data: JSON.stringify(params),
-    xhrFields: {
-      withCredentials: true // 设置运行跨域操作
-    },
-    dataType:'json',
-    contentType: "application/json;charset=UTF-8",
-    success:function(res){
-      $.myToast(res.value);
-    },
-    error: function(e){
-      $.myToast("服务器异常，请稍等");
-    }
+  addEvaluate(params,function(res){
+    // if (res.errorCode === '0') {
+    // } else {
+    //   $.myToast(res.value);
+    // }
+    history.go(-1)
+  },function(){
+    $.myToast("服务器异常，请稍等");
   })
 }
 
@@ -115,4 +126,33 @@ function getQueryVariable(variable){
           if(pair[0] == variable){return pair[1];}
   }
   return(false);
+}
+function checkedEvalText(){
+  var star = Number($('.starEval').attr('data-star')) // 点击对象对应的data-num属性
+  var evalText = $('#textarea').val()
+  if(star <= 2 && evalText.length < 30){ // 差评
+    $.myToast("差评描述至少30个字",2500);
+    return false
+  } else {
+    return true
+  }
+}
+function addEvaluate(params,successFun,errorFun){
+  var url = '/api/h5gateway/evaluate/addEvaluate'
+  $.ajax({
+    type: 'POST',
+    url: url,
+    data: JSON.stringify(params),
+    xhrFields: {
+      withCredentials: true // 设置运行跨域操作
+    },
+    dataType:'json',
+    contentType: "application/json;charset=UTF-8",
+    success:function(res){
+      successFun(res)
+    },
+    error: function(e){
+      errorFun(e)
+    }
+  })
 }
