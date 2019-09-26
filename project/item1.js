@@ -52,7 +52,7 @@ gulp.task('server', function() {
     changeOrigin: true,
     pathRewrite: {
      '^/api': ''
-      }
+    }
   })
   browserSync.init({
       server: {

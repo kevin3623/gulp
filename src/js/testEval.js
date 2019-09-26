@@ -18,7 +18,8 @@ function closeEval(){
     } else{
       // $.myToast(res.value);
     }
-    history.go(-1)
+    // history.go(-1)
+    location.href = decodeURIComponent(getQueryVariable('currentUrl'))
   },function(){return false})
 }
 function toggleName(){
@@ -112,7 +113,8 @@ function submit(){
     // } else {
     //   $.myToast(res.value);
     // }
-    history.go(-1)
+    // history.go(-1)
+    location.href = getQueryVariable('currentUrl')
   },function(){
     $.myToast("服务器异常，请稍等");
   })
@@ -130,6 +132,14 @@ function getQueryVariable(variable){
 function checkedEvalText(){
   var star = Number($('.starEval').attr('data-star')) // 点击对象对应的data-num属性
   var evalText = $('#textarea').val()
+  if(star < 1){
+    $.myToast("请选择评价星级",2500);
+    return false
+  }
+  if(evalText.length > 255){
+    $.myToast("描述不得超过255个字",2500);
+    return false
+  }
   if(star <= 2 && evalText.length < 30){ // 差评
     $.myToast("差评描述至少30个字",2500);
     return false
